@@ -24,7 +24,9 @@ def _gather_config_files(package=None):
     else:
         conf_files.append(default_config)
     if package:
-        pkg_config = os.path.join(os.path.dirname(package.__file__), "etc", "config.ini")
+        pkg_config = os.path.join(
+            os.path.dirname(package.__file__), "etc", "config.ini"
+        )
         if os.path.isfile(pkg_config):
             conf_files.append(pkg_config)
 
