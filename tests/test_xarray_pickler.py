@@ -17,21 +17,19 @@ from .conftest import MINI_ESGF_CACHE_DIR
 
 def test_get_pickle_path(tmpdir):
     CONFIG["paths"]["cache_base_dir"] = f"{tmpdir}/fakepath"
-    dpath = "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical"
-    "/r1i1p1f1/Amon/rlds/gr/v20180803"
+    dpath = "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon/rlds/gr/v20180803"
 
     pickle_path = _get_pickle_path(dpath)
 
     assert (
-        pickle_path == f"{tmpdir}/fakepath/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR"
-        "/historical/r1i1p1f1/Amon.rlds.gr.v20180803.pickle"
+        pickle_path
+        == f"{tmpdir}/fakepath/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon.rlds.gr.v20180803.pickle"
     )
 
 
 def test_open_dset_default_kwargs(tmpdir, load_test_data):
     CONFIG["paths"]["cache_base_dir"] = tmpdir
-    dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6"
-    "/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
+    dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
 
     ds_original = xr.open_mfdataset(
         f"{dpath}/*nc", use_cftime=True, combine="by_coords"
@@ -49,8 +47,7 @@ def test_open_dset_default_kwargs(tmpdir, load_test_data):
 
 def test_open_dset_force_repickle(tmpdir, load_test_data):
     CONFIG["paths"]["cache_base_dir"] = tmpdir
-    dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/"
-    "CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
+    dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
 
     ds_original = xr.open_mfdataset(
         f"{dpath}/*nc", use_cftime=True, combine="by_coords"
