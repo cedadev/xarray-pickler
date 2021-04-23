@@ -1,5 +1,3 @@
-"""Main module."""
-
 __author__ = """Elle Smith"""
 __contact__ = "eleanor.smith@stfc.ac.uk"
 __copyright__ = "Copyright 2020 United Kingdom Research and Innovation"
@@ -36,12 +34,12 @@ def _get_pickle_path(dpath):
 
 def open_dset(dpath, force_repickle=False, **kwargs):
     """
-    Open xarray.Dataset object. If previsouly pickled, it will be opened from the pickle file stored in the cache.
-    Otherwise, it will be pickled and stored in the cache and opened using xarray.open_mfdataset() with and extra keyword arguments specified.
+    Open xarray.Dataset object. If previously pickled, it will be opened from the pickle file stored in the cache.
+    Otherwise, it will be pickled and stored in the cache and opened using xarray.open_mfdataset() with any extra keyword arguments specified.
 
-    :param dpath: Directory path to netCDF files to generate dataset from e.g. "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon/rlds/gr/v20180803"
+    :param dpath (str): Directory path to netCDF files to generate dataset from e.g. "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon/rlds/gr/v20180803"
     :param force_repickle: If True, the xarray.Dataset object will be repickled. Default is False.
-    :param **kwargs: Other keyword arguments that can be used in xarray.open_mfdataset(). Used only for the first time a dataset is pickled or if force_repickle=True.
+    :param **kwargs: Other keyword arguments that can be used in xarray.open_mfdataset(). Used only the first time a dataset is pickled or if force_repickle=True.
 
     :return: xarray.Dataset object
     """
