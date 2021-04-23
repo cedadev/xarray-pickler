@@ -53,10 +53,26 @@ def test_open_dset_force_repickle(tmpdir, load_test_data):
         f"{dpath}/*nc", use_cftime=True, combine="by_coords"
     )
 
-    ds_pickle = open_dset(dpath, force_repickle=True)
+    ds_pickle = open_dset(dpath)
 
     assert ds_pickle == ds_original
 
-    ds_repickle = open_dset(dpath, force_repickle=False)
+    ds_repickle = open_dset(dpath, force_repickle=True)
 
     assert ds_repickle == ds_original
+
+
+def test_curvilinear_dataset(tmpdir, load_test_data):
+    dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/MPI-M/MPI-ESM1-2-LR/historical/r1i1p1f1/Omon/tos/gn/v20190710/"
+
+    ds_original = xr.open_mfdataset(
+        f"{dpath}/*nc", use_cftime=True, combine="by_coords"
+    )
+
+    ds = open_dset(dpath)
+
+    assert ds == ds_original
+
+    ds_pickle = open_dset(dpath)
+
+    assert ds_pickle == ds_original
