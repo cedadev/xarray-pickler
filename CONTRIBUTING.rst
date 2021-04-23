@@ -51,8 +51,7 @@ If you are proposing a feature:
 
 * Explain in detail how it would work.
 * Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that contributions
-  are welcome :)
+
 
 Get Started!
 ------------
@@ -76,14 +75,19 @@ Ready to contribute? Here's how to set up `xarray_pickler` for local development
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the
-   tests, including testing other Python versions with tox::
+5.  When you are done making changes, check that your changes pass flake8 and the
+    tests, including testing other Python versions with tox:
 
-    $ flake8 xarray_pickler tests
-    $ python setup.py test or pytest
-    $ tox
+    $ flake8 clisops tests
+    $ black --target-version py36 clisops tests
+    $ pytest tests
 
-   To get flake8 and tox, just pip install them into your virtualenv.
+    To get flake8, black, and tox, just pip install them into your virtualenv.
+    Alternatively, you can use `pre-commit` to perform these checks at the git commit stage:
+
+    $ pip install pre-commit
+    $ pre-commit install
+    $ pre-commit run --all-files
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -111,7 +115,7 @@ Tips
 
 To run a subset of tests::
 
-$ pytest tests.test_xarray_pickler
+$ pytest tests/test_xarray_pickler.py::test_get_pickle_path
 
 
 Deploying

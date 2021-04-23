@@ -16,17 +16,13 @@ xarray-pickler
 
 
 
-Simple package to speed up "multi-file open" operations for xarray datasets. Uses a cache of pickle files to store the metadata in the `xarray.Dataset` object.
+Simple package to speed up 'multi-file open' operations for xarray datasets. Uses a cache of pickle files to store the metadata in the `xarray.Dataset` object.
 
 
 * Free software: BSD - see LICENSE file in top-level package directory
 * Documentation: https://xarray-pickler.readthedocs.io.
 
 
-Features
---------
-
-* TODO
 
 Credits
 -------
