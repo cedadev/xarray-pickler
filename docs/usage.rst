@@ -30,7 +30,7 @@ e.g. ``PICKLE_CONFIG="path/to/config.ini"``
 
 
 The configuration settings used are listed and explained below. Explanations will be provided as comments in the code blocks if needed.
-Examples are provided so these settings will not necesarily match up with what is used in each of the packages.
+Examples are provided so these settings will not necesarily match up with what is used.
 
 Specifying types
 ################
@@ -40,20 +40,20 @@ It is possible to specify the type of the entries in the configuration file, for
 This is managed through a ``[config_data_types]`` section at the top of the INI file which has the following options::
 
     [config_data_types]
-    # use only in roocs-utils
+    # use only in xarray-pickler
     lists =
     dicts =
     ints =
     floats =
     boolean =
-    # use the below in all other packages
+    # use the below if using the xarray-pickler config settings in other packages
     extra_lists =
     extra_dicts =
     extra_ints =
     extra_floats =
     extra_booleans =
 
-Simply adding the name of the value you want to format after ``=`` will render the correct format. e.g. ``boolean = use_inventory is_default_for_path`` will set both ``use_inventory`` and ``is_default_for_path`` as booleans.
+Simply adding the name of the value you want to format after ``=`` will render the correct format. e.g. ``boolean = use_cftime`` will set ``use_cftime`` as a boolean.
 
 Settings
 ########

@@ -76,14 +76,14 @@ Ready to contribute? Here's how to set up `xarray_pickler` for local development
    Now you can make your changes locally.
 
 5.  When you are done making changes, check that your changes pass flake8 and the
-    tests, including testing other Python versions with tox:
+    tests, including testing other Python versions with tox::
 
     $ flake8 clisops tests
     $ black --target-version py36 clisops tests
     $ pytest tests
 
     To get flake8, black, and tox, just pip install them into your virtualenv.
-    Alternatively, you can use `pre-commit` to perform these checks at the git commit stage:
+    Alternatively, you can use `pre-commit` to perform these checks at the git commit stage::
 
     $ pip install pre-commit
     $ pre-commit install

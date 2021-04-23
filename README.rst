@@ -6,8 +6,9 @@ xarray-pickler
 .. image:: https://img.shields.io/pypi/v/xarray_pickler.svg
         :target: https://pypi.python.org/pypi/xarray_pickler
 
-.. image:: https://img.shields.io/travis/cedadev/xarray_pickler.svg
-        :target: https://travis-ci.com/cedadev/xarray_pickler
+.. image:: https://github.com/cedadev/xarray-pickler/workflows/build/badge.svg
+        :target: https://github.com/cedadev/xarray-pickler/actions
+        :alt: Build Status
 
 .. image:: https://readthedocs.org/projects/xarray-pickler/badge/?version=latest
         :target: https://xarray-pickler.readthedocs.io/en/latest/?badge=latest
