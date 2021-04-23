@@ -4,7 +4,7 @@ xarray-pickler
 
 
 .. image:: https://img.shields.io/pypi/v/xarray_pickler.svg
-        :target: https://pypi.python.org/pypi/xarray_pickler
+        :target: https://pypi.python.org/pypi/xarray-pickler
 
 .. image:: https://github.com/cedadev/xarray-pickler/workflows/build/badge.svg
         :target: https://github.com/cedadev/xarray-pickler/actions
