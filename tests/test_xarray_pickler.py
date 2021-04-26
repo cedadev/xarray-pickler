@@ -45,6 +45,21 @@ def test_open_dset_default_kwargs(tmpdir, load_test_data):
     assert ds_from_pickle == ds_original
 
 
+def test_open_dset_extra_kwargs(tmpdir, load_test_data):
+    CONFIG["paths"]["cache_base_dir"] = tmpdir
+
+    dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
+
+    ds_original = xr.open_mfdataset(f"{dpath}/*nc")
+
+    assert "lon_bnds" in ds_original.variables
+
+    #  check extra kwargs are being picked up
+    ds = open_dset(dpath, drop_variables=["lon_bnds"])
+
+    assert "lon_bnds" not in ds.variables
+
+
 def test_open_dset_force_repickle(tmpdir, load_test_data):
     CONFIG["paths"]["cache_base_dir"] = tmpdir
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
