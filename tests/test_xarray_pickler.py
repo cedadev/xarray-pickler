@@ -7,10 +7,11 @@ __contact__ = "eleanor.smith@stfc.ac.uk"
 __copyright__ = "Copyright 2020 United Kingdom Research and Innovation"
 __license__ = "BSD - see LICENSE file in top-level package directory"
 
-import xarray as xr
-import tempfile
 import os
 import shutil
+import tempfile
+
+import xarray as xr
 
 from xarray_pickler import CONFIG, open_dset
 from xarray_pickler.xarray_pickler import _get_pickle_name, _get_pickle_path
@@ -25,7 +26,7 @@ def test_get_pickle_name():
 
     assert (
         pickle_name
-        == f"/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon.rlds.gr.v20180803.pickle"
+        == "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon.rlds.gr.v20180803.pickle"
     )
 
 
@@ -36,22 +37,29 @@ def test_remove_archive_dir_pickle_name():
 
     assert (
         pickle_name
-        == f"CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+        == "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
     )
 
+
 def test_get_pickle_path_write():
-    pickle = "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    pickle = (
+        "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
     pickle_path = _get_pickle_path(pickle, "w")
 
-    assert pickle_path.endswith("/otherdir/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle")
+    assert pickle_path.endswith(
+        "/otherdir/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
 
 def test_get_pickle_path_write_no_writeable_dir():
     writeable_dir = CONFIG["paths"]["writeable_pickle_dir"]
     CONFIG["paths"]["writeable_pickle_dir"] = ""
 
-    pickle = "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    pickle = (
+        "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
     pickle_path = _get_pickle_path(pickle, "w")
 
@@ -62,7 +70,9 @@ def test_get_pickle_path_write_no_writeable_dir():
 
 
 def test_get_pickle_path_read_no_pickle_file():
-    pickle = "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    pickle = (
+        "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
     pickle_path = _get_pickle_path(pickle, "r")
 
@@ -71,9 +81,11 @@ def test_get_pickle_path_read_no_pickle_file():
 
 def test_get_pickle_path_read_file_in_primary_dir():
 
-    pickle = "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    pickle = (
+        "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
-    # put a pickle file in the primary dir for the test
+    #  put a pickle file in the primary dir for the test
     primary_dir = CONFIG["paths"]["pickle_dirs"][0]
     pickle_file = os.path.join(primary_dir, pickle)
 
@@ -83,7 +95,9 @@ def test_get_pickle_path_read_file_in_primary_dir():
 
     pickle_path = _get_pickle_path(pickle, "r")
 
-    assert pickle_path.endswith("/fakedir/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle")
+    assert pickle_path.endswith(
+        "/fakedir/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
     # delete the test primary pickle dir
     shutil.rmtree(CONFIG["paths"]["pickle_dirs"][0])
@@ -93,12 +107,16 @@ def test_get_pickle_path_read_file_in_second_dir():
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610"
     open_dset(dpath)
 
-    pickle = "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    pickle = (
+        "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
 
     pickle_path = _get_pickle_path(pickle, "r")
 
-    assert pickle_path.endswith("/otherdir/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle")
-    
+    assert pickle_path.endswith(
+        "/otherdir/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
+    )
+
     # delete the test writeable pickle dir
     shutil.rmtree(CONFIG["paths"]["writeable_pickle_dir"])
 

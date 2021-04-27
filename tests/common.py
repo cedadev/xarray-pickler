@@ -1,7 +1,8 @@
-from pathlib import Path
-from jinja2 import Template
 import os
 import tempfile
+from pathlib import Path
+
+from jinja2 import Template
 
 MINI_ESGF_CACHE_DIR = Path.home() / ".mini-esgf-data"
 PICKLE_CFG = os.path.join(tempfile.gettempdir(), "config.ini")
@@ -16,7 +17,9 @@ def write_cfg():
     archive_dirs = {{ base_dir }}/master/test_data/badc/cmip6/data/
     remove_archive_dir = True
     """
-    cfg = Template(cfg_templ).render(base_dir=MINI_ESGF_CACHE_DIR, tmp_dir=tempfile.gettempdir())
+    cfg = Template(cfg_templ).render(
+        base_dir=MINI_ESGF_CACHE_DIR, tmp_dir=tempfile.gettempdir()
+    )
     with open(PICKLE_CFG, "w") as fp:
         fp.write(cfg)
     # point to cfg in environment

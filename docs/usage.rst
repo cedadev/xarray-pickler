@@ -69,9 +69,9 @@ The settings that can be configured are::
     dir_grouping_level = 4
     # the path to the pickle file stores, to be listed in the order they should be checked for existing pickles.
     pickle_dirs = /badc/cmip6/metadata/xarray-pickles /gws/nopw/j04/cp4cds1_vol1/metadata/xarray-pickles
-    # the directory to write new pickle files to 
+    # the directory to write new pickle files to
     writeable_pickle_dir = /gws/nopw/j04/cp4cds1_vol1/metadata/xarray-pickles
-    # directories where the archive data is stored 
+    # directories where the archive data is stored
     archive_dirs = /badc/cmip6/data/
-    # whether to remove the archive dir from the full pickle file path 
+    # whether to remove the archive dir from the full pickle file path
     remove_archive_dir = True

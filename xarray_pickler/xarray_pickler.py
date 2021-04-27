@@ -31,14 +31,14 @@ def _get_pickle_name(dpath):
     parts = dpath.split("/")
     parts.append("pickle")
 
-    grouped_path = "/".join(parts[:-(gl + 1)]) + "/" + ".".join(parts[-(gl + 1):])
+    grouped_path = "/".join(parts[: -(gl + 1)]) + "/" + ".".join(parts[-(gl + 1) :])
 
     return grouped_path
 
 
 def _get_pickle_path(pck, mode="r"):
     """
-    Gets the read or write file path for the pickle file. 
+    Gets the read or write file path for the pickle file.
 
     :param pck (str): The base pickle path, to append to the read or write directory.
     :param mode: This should be "r" for read or "w" for write. Default is "r". This determines the directory to insert before the pickle path.
@@ -59,16 +59,14 @@ def _get_pickle_path(pck, mode="r"):
                 # found a pickle file so can return the path
                 return pickle_path
 
-
     if mode == "w" and writeable_pickle_dir:
         pickle_path = os.path.join(writeable_pickle_dir, pck)
- 
+
         os.makedirs(os.path.dirname(pickle_path), exist_ok=True)
 
         return pickle_path
-        
-    return 
-        
+
+    return
 
 
 def open_dset(dpath, force_repickle=False, **kwargs):
@@ -86,14 +84,15 @@ def open_dset(dpath, force_repickle=False, **kwargs):
     open_kwargs = CONFIG["open_mfdataset_kwargs"].copy()
     open_kwargs.update(kwargs)
 
-    if dpath.endswith("/"): dpath = dpath[:-1]
+    if dpath.endswith("/"):
+        dpath = dpath[:-1]
 
     fpattn = f"{dpath}/*.nc"
     logger.info(f"Reading: {fpattn}")
 
     pck = _get_pickle_name(dpath)
     read_pickle_path = _get_pickle_path(pck, mode="r")
-    
+
     if read_pickle_path and not force_repickle:
         try:
             with open(read_pickle_path, "rb") as reader:
@@ -104,7 +103,7 @@ def open_dset(dpath, force_repickle=False, **kwargs):
 
     ds = xr.open_mfdataset(fpattn, **open_kwargs)
     ds.close()
-    
+
     write_pickle_path = _get_pickle_path(pck, mode="w")
 
     if write_pickle_path:
