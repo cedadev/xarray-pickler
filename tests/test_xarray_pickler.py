@@ -103,8 +103,10 @@ def test_get_pickle_path_read_file_in_primary_dir():
     shutil.rmtree(CONFIG["paths"]["pickle_dirs"][0])
 
 
-def test_get_pickle_path_read_file_in_second_dir():
+def test_get_pickle_path_read_file_in_second_dir(load_test_data):
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610"
+
+    #  write pickle file in secondary dir
     open_dset(dpath)
 
     pickle = (
@@ -121,7 +123,7 @@ def test_get_pickle_path_read_file_in_second_dir():
     shutil.rmtree(CONFIG["paths"]["writeable_pickle_dir"])
 
 
-def test_open_dset_default_kwargs(tmpdir, load_test_data):
+def test_open_dset_default_kwargs(load_test_data):
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
 
     ds_original = xr.open_mfdataset(
@@ -142,7 +144,7 @@ def test_open_dset_default_kwargs(tmpdir, load_test_data):
     shutil.rmtree(CONFIG["paths"]["writeable_pickle_dir"])
 
 
-def test_open_dset_extra_kwargs(tmpdir, load_test_data):
+def test_open_dset_extra_kwargs(load_test_data):
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
 
     ds_original = xr.open_mfdataset(f"{dpath}/*nc")
@@ -158,7 +160,7 @@ def test_open_dset_extra_kwargs(tmpdir, load_test_data):
     shutil.rmtree(CONFIG["paths"]["writeable_pickle_dir"])
 
 
-def test_open_dset_force_repickle(tmpdir, load_test_data):
+def test_open_dset_force_repickle(load_test_data):
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610/"
 
     ds_original = xr.open_mfdataset(
@@ -177,7 +179,7 @@ def test_open_dset_force_repickle(tmpdir, load_test_data):
     shutil.rmtree(CONFIG["paths"]["writeable_pickle_dir"])
 
 
-def test_curvilinear_dataset(tmpdir, load_test_data):
+def test_curvilinear_dataset(load_test_data):
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/MPI-M/MPI-ESM1-2-LR/historical/r1i1p1f1/Omon/tos/gn/v20190710/"
 
     ds_original = xr.open_mfdataset(
