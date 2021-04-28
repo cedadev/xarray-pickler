@@ -17,16 +17,17 @@ def _get_pickle_name(dpath):
     """
     Define a "grouped" path that splits facets across directories and then groups the final set into a file path, based on dir_grouping_level value in CONFIG.
 
-    If replace_archive_dir is set as True in CONFIG, the base archive directory will be removed from the file path to shorten it.
+    If remove_archive_dir_in_path is set as True in CONFIG, the base archive directory will be removed from the file path to shorten it.
     """
     gl = CONFIG["paths"]["dir_grouping_level"]
-    archive_dirs = CONFIG["paths"]["archive_dirs"]
-    remove_archive_dir = CONFIG["paths"]["remove_archive_dir"]
+    archive_dir = CONFIG["paths"]["archive_dir"]
+    remove_archive_dir_in_path = CONFIG["paths"]["remove_archive_dir_in_path"]
 
-    if remove_archive_dir:
-        for adir in archive_dirs:
-            if dpath.startswith(adir):
-                dpath = dpath.replace(adir, "")
+    if remove_archive_dir_in_path:
+        if dpath.startswith(archive_dir):
+            if not archive_dir.endswith("/"):
+                archive_dir = archive_dir + "/"
+            dpath = dpath.replace(archive_dir, "")
 
     parts = dpath.split("/")
     parts.append("pickle")
@@ -53,14 +54,14 @@ def _get_pickle_path(pck, mode="r"):
 
     if mode == "r":
         for pdir in pickle_dirs:
-            pickle_path = os.path.join(pdir, pck)
 
+            pickle_path = os.path.join(pdir, pck.lstrip("/"))
             if os.path.isfile(pickle_path):
                 # found a pickle file so can return the path
                 return pickle_path
 
     if mode == "w" and writeable_pickle_dir:
-        pickle_path = os.path.join(writeable_pickle_dir, pck)
+        pickle_path = os.path.join(writeable_pickle_dir, pck.lstrip("/"))
 
         os.makedirs(os.path.dirname(pickle_path), exist_ok=True)
 

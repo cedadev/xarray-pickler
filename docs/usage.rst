@@ -41,11 +41,11 @@ This is managed through a ``[config_data_types]`` section at the top of the INI 
 
     [config_data_types]
     # use only in xarray-pickler
-    lists = pickle_dirs archive_dirs
+    lists = pickle_dirs
     dicts =
     ints = dir_grouping_level
     floats =
-    boolean = use_cftime replace_archive_dir
+    boolean = use_cftime remove_archive_dir_in_path
     # use the below if using the xarray-pickler config settings in other packages
     extra_lists =
     extra_dicts =
@@ -53,7 +53,7 @@ This is managed through a ``[config_data_types]`` section at the top of the INI 
     extra_floats =
     extra_booleans =
 
-Simply adding the name of the value you want to format after ``=`` will render the correct format. e.g. ``lists = pickle_dirs archive_dirs`` will set  both ``pickle_dirs`` and ``archive_dirs`` as lists.
+Simply adding the name of the value you want to format after ``=`` will render the correct format. e.g. ``boolean = use_cftime remove_archive_dir_in_path`` will set  both ``use_cftime`` and ``remove_archive_dir_in_path`` as booleans.
 
 Settings
 ########
@@ -72,6 +72,6 @@ The settings that can be configured are::
     # the directory to write new pickle files to
     writeable_pickle_dir = /gws/nopw/j04/cp4cds1_vol1/metadata/xarray-pickles
     # directories where the archive data is stored
-    archive_dirs = /badc/cmip6/data/
+    archive_dir = /badc/cmip6/data/
     # whether to remove the archive dir from the full pickle file path
-    remove_archive_dir = True
+    remove_archive_dir_in_path = True

@@ -12,10 +12,10 @@ def write_cfg():
     cfg_templ = """
     [paths]
     dir_grouping_level = 4
-    pickle_dirs = {{ tmp_dir }}/fakedir {{ tmp_dir }}/otherdir
+    pickle_dirs = {{ tmp_dir }}/fakedir/ {{ tmp_dir }}/otherdir
     writeable_pickle_dir = {{ tmp_dir }}/otherdir
-    archive_dirs = {{ base_dir }}/master/test_data/badc/cmip6/data/
-    remove_archive_dir = True
+    archive_dir = {{ base_dir }}/master/test_data/badc/cmip6/data
+    remove_archive_dir_in_path = True
     """
     cfg = Template(cfg_templ).render(
         base_dir=MINI_ESGF_CACHE_DIR, tmp_dir=tempfile.gettempdir()

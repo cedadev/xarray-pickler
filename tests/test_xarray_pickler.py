@@ -30,7 +30,7 @@ def test_get_pickle_name():
     )
 
 
-def test_remove_archive_dir_pickle_name():
+def test_remove_archive_in_path_dir_pickle_name():
     dpath = f"{MINI_ESGF_CACHE_DIR}/master/test_data/badc/cmip6/data/CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon/rlds/gr1/v20190610"
 
     pickle_name = _get_pickle_name(dpath)
