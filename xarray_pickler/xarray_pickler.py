@@ -97,7 +97,9 @@ def open_dset(dpath, force_repickle=False, **kwargs):
     if read_pickle_path and not force_repickle:
         try:
             with open(read_pickle_path, "rb") as reader:
-                return pickle.load(reader)
+                ds = pickle.load(reader)
+                logger.info(f"Dataset read from cached pickle: {read_pickle_path}")
+                return ds
         except Exception:
             # Assume failure so try to re-read and re-pickle the file
             pass
