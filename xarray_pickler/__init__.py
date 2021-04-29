@@ -17,3 +17,5 @@ logging.config.fileConfig(
     os.path.join(os.path.dirname(__file__), "etc", "logging.conf"),
     disable_existing_loggers=False,
 )
+
+from xarray_pickler.xarray_pickler import open_dset

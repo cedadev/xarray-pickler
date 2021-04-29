@@ -1,11 +1,14 @@
 import os
-from pathlib import Path
 
 import pytest
 from git import Repo
+from jinja2 import Template
 
-MINI_ESGF_CACHE_DIR = Path.home() / ".mini-esgf-data"
+from .common import MINI_ESGF_CACHE_DIR, write_cfg
+
 TEST_DATA_REPO_URL = "https://github.com/roocs/mini-esgf-data"
+
+write_cfg()
 
 
 @pytest.fixture
