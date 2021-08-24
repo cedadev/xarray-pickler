@@ -18,6 +18,9 @@ def _get_pickle_name(dpath):
     Define a "grouped" path that splits facets across directories and then groups the final set into a file path, based on dir_grouping_level value in CONFIG.
 
     If remove_archive_dir_in_path is set as True in CONFIG, the base archive directory will be removed from the file path to shorten it.
+    NOTE: the following characters are replaced as followed:
+          - "*": "all"
+          - "?": "_"
     """
     gl = CONFIG["paths"]["dir_grouping_level"]
     archive_dir = CONFIG["paths"]["archive_dir"]
@@ -33,6 +36,12 @@ def _get_pickle_name(dpath):
     parts.append("pickle")
 
     grouped_path = "/".join(parts[: -(gl + 1)]) + "/" + ".".join(parts[-(gl + 1) :])
+
+    # Replace illegal characters
+    replacers = {"*": "all", "?": "_"}
+
+    for key, value in replacers.items():
+        grouped_path = grouped_path.replace(key, value)
 
     return grouped_path
 
