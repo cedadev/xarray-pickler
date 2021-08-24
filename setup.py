@@ -15,6 +15,10 @@ with open("README.rst") as readme_file:
 with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
+_init_lines = open("xarray_pickler/__init__.py").readlines()
+_version_line = [line for line in _init_lines if line.startswith("__version__")][0] 
+version = _version_line.split("=")[1].strip().strip('"')
+
 requirements = [line.strip() for line in open("requirements.txt")]
 
 dev_requirements = [line.strip() for line in open("requirements_dev.txt")]
@@ -38,7 +42,8 @@ setup(
     author_email=__contact__,
     python_requires=">=3.6",
     setup_requires=["setuptools_scm"],
-    use_scm_version=True,
+#    use_scm_version=True,
+    version=version,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
@@ -81,6 +86,6 @@ setup(
     test_suite="tests",
     tests_require=test_requirements,
     extras_require={"docs": docs_requirements, "dev": dev_requirements},
-    url="https://github.com/cedadev/xarray_pickler",
+    url="https://github.com/cedadev/xarray-pickler",
     zip_safe=False,
 )

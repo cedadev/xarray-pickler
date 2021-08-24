@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/cedadev/xarray_pickler/issues.
+Report bugs at https://github.com/cedadev/xarray-pickler/issues.
 
 If you are reporting a bug, please include:
 
@@ -45,7 +45,7 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/cedadev/xarray_pickler/issues.
+The best way to send feedback is to file an issue at https://github.com/cedadev/xarray-pickler/issues.
 
 If you are proposing a feature:
 
@@ -56,17 +56,17 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `xarray_pickler` for local development.
+Ready to contribute? Here's how to set up `xarray-pickler` for local development.
 
-1. Fork the `xarray_pickler` repo on GitHub.
+1. Fork the `xarray-pickler` repo on GitHub.
 2. Clone your fork locally::
 
-    $ git clone git@github.com:your_name_here/xarray_pickler.git
+    $ git clone git@github.com:your_name_here/xarray-pickler.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv xarray_pickler
-    $ cd xarray_pickler/
+    $ cd xarray-pickler/
     $ python setup.py develop
 
 4. Create a branch for local development::
@@ -107,7 +107,7 @@ Before you submit a pull request, check that it meets these guidelines:
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
 3. The pull request should work for Python 3.6, 3.7 and 3.8. Check
-   https://travis-ci.com/cedadev/xarray_pickler/pull_requests
+   https://travis-ci.com/cedadev/xarray-pickler/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
 Tips
