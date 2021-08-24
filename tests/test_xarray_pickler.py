@@ -41,6 +41,17 @@ def test_remove_archive_in_path_dir_pickle_name():
     )
 
 
+def test_get_pickle_name_replace_chars():
+    dpath = "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon/*/*/v201808??"
+
+    pickle_name = _get_pickle_name(dpath)
+
+    assert (
+        pickle_name
+        == "/badc/cmip6/data/CMIP6/CMIP/IPSL/IPSL-CM6A-LR/historical/r1i1p1f1/Amon.all.all.v201808__.pickle"
+    )
+
+
 def test_get_pickle_path_write():
     pickle = (
         "CMIP6/CMIP/INM/INM-CM5-0/historical/r1i1p1f1/Amon.rlds.gr1.v20190610.pickle"
