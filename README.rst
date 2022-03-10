@@ -1,3 +1,13 @@
+==================================================
+WARNING: xarray-pickler is likely to be superseded
+==================================================
+
+...by https://grantjenks.com/docs/diskcache/ - as demonstrated in Carsten's notebook here:
+
+https://github.com/roocs/rook/blob/dev-op-concat/notebooks/concat_with_cache.ipynb
+
+See previous notes below.
+
 ==============
 xarray-pickler
 ==============
